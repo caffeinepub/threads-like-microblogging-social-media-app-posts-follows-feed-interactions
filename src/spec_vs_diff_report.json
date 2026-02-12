@@ -1,0 +1,50 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T19:35:15.267Z",
+  "summary": "Brand text and header logo usage were updated to “Josh” in the main layout, and the HTML document title was changed to “Josh”. However, the diff does not show the new logo asset being added under the required public assets path, does not show any production deployment/subdomain configuration change to `josh`, and provides no evidence that all remaining user-facing “Threads” references across the UI were removed.",
+  "missing_requirements": [
+    {
+      "id": "REQ-12",
+      "requirement": "Update all user-visible branding text from “Threads” to “Josh”, including the top-left header brand text and any other remaining “Threads” references in the UI.",
+      "reason": "The diff shows the header brand text changed to “Josh”, but it does not provide evidence of a broader scan/update of other UI strings/templates where “Threads” might still appear.",
+      "evidence": [
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "requirement": "Add an appropriate “Josh” logo and update the app header branding to use it (new generated logo image under `frontend/public/assets/generated/` and used by header).",
+      "reason": "The header now references `/assets/generated/josh-logo.dim_512x512.png` with appropriate alt text, but no new image file was added in the diff (Added files: none), so there is no evidence the required asset exists under `frontend/public/assets/generated/`.",
+      "evidence": [
+        "frontend/src/components/layout/AppLayout.tsx",
+        "file-diff (Added files: none)"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "requirement": "Update the production deployment configuration so the app subdomain is exactly `josh` (not `josh-ulx`).",
+      "reason": "No deployment/configuration files are shown as modified to change the production subdomain; the diff only shows frontend layout/title and metadata changes.",
+      "evidence": [
+        "file-diff (Modified files list)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Added/changed footer attribution content including “Built with ❤️ using caffeine.ai” and UTM-tagged external link.",
+      "reason": "The BuildRequest is limited to rebranding (title/header/logo) and subdomain changes, and explicitly states not to change the social app feature set beyond branding/title/subdomain. The new footer attribution/link is not requested by any requirement.",
+      "evidence": [
+        "frontend/src/components/layout/AppLayout.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/index.html",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "project_state.json"
+  ]
+}

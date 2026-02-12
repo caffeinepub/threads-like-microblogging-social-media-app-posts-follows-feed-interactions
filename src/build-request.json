@@ -1,0 +1,104 @@
+{
+  "kind": "build_request",
+  "title": "Rebrand app as “Josh” (title, header branding, logo) and set deployment subdomain to josh",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "text": "Update all user-visible branding text from “Threads” to “Josh”, including the top-left header brand text and any other remaining “Threads” references in the UI.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-USER-1",
+          "msg-USER-2"
+        ],
+        "quotes": [
+          "subdomain should only be josh instead of josh-ulx. Also the title is still threads, use Josh instead of threads and use an appropriate logo for josh",
+          "Yeah"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Header brand text in the sticky top header shows “Josh” (no longer “Threads”).",
+        "A scan of the frontend UI and templates shows no remaining user-facing “Threads” branding (except where part of a descriptive non-brand sentence is intentionally kept, if any)."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Change the HTML document title to use “Josh” instead of the current Threads-based title text so that the browser tab/title reflects the new app name.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-USER-1"
+        ],
+        "quotes": [
+          "Also the title is still threads, use Josh instead of threads"
+        ]
+      },
+      "acceptanceCriteria": [
+        "`frontend/index.html` `<title>` is updated to include “Josh” and does not include “Threads”.",
+        "After loading the app, the browser tab title shows “Josh”."
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Add an appropriate “Josh” logo and update the app header branding to use it (replacing the current generated app logo asset usage where shown in the header).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-USER-1"
+        ],
+        "quotes": [
+          "use an appropriate logo for josh"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new generated logo image for Josh exists under `frontend/public/assets/generated/` and is used by the header brand link.",
+        "The header logo has appropriate alt text (e.g., “Josh logo”).",
+        "The previous logo asset is no longer referenced in the header component."
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Update the production deployment configuration so the app subdomain is exactly `josh` (not `josh-ulx`).",
+      "target": "unknown",
+      "source": {
+        "messageIds": [
+          "msg-USER-1"
+        ],
+        "quotes": [
+          "subdomain should only be josh instead of josh-ulx"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The deployed app is reachable via the `josh` subdomain, and `josh-ulx` is no longer the active subdomain for this app."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for any user-facing text.",
+    "Do not edit files under `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, or anything under `frontend/src/components/ui` (compose existing UI components instead).",
+    "Keep the backend as a single Motoko actor; only introduce `backend/migration.mo` if state upgrade is required (not expected for pure branding changes)."
+  ],
+  "nonGoals": [
+    "Do not change the social app feature set (feeds, posting, likes, follows, replies, reposts) beyond branding/title/subdomain adjustments.",
+    "Do not introduce third-party authentication providers or external services to manage domains/subdomains."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Minimalist “Josh” logo mark, clean modern style, high contrast, on transparent background (josh-logo.dim_512x512.png)"
+    ],
+    "edits": [
+      "Replace the existing logo artwork with a Josh-appropriate logo (app-logo.dim_512x512.png > josh-logo.dim_512x512.png)"
+    ]
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Build a Threads-like social media app.",
+  "architectural_notes": [],
+  "known_issues": [
+    "App/page title is still set to \"Threads\" instead of \"Josh\" in the live deployment."
+  ],
+  "isFixRequest": true,
+  "imageRequirements": "## Required Images\n- Minimalist “Josh” logo mark, clean modern style, high contrast, on transparent background (josh-logo.dim_512x512.png)\n\n## Edit Images\n- Replace the existing logo artwork with a Josh-appropriate logo (app-logo.dim_512x512.png > josh-logo.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-internet-identity-sign-in-and-gate-authenticated-actions-creating-posts-following-liking-replying-reposting-behind-authentication-while-allowing-unauthenticated-users-to-browse-a-limited-public-feed",
+      "title": "Implement Internet Identity sign-in and gate authenticated actions (creating posts, following, liking, replying, reposting) behind authentication, while allowing unauthenticated users to browse a limited public feed.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-main-app-navigation-and-pages-home-feed-explore-search-create-post-composer-profile-self-and-other-users-and-post-detail-thread-view-with-replies",
+      "title": "Build the main app navigation and pages: Home feed, Explore/Search, Create Post composer, Profile (self and other users), and Post detail (thread view with replies).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-posting-experience-similar-to-threads-text-only-post-composer-with-character-limit-inline-validation-and-optimistic-ui-updates-for-publishing-to-the-feed",
+      "title": "Implement the posting experience similar to Threads: text-only post composer with character limit, inline validation, and optimistic UI updates for publishing to the feed.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-social-interactions-follow-unfollow-users-like-unlike-posts-repost-unrepost-posts-and-reply-to-posts-reflect-counts-and-user-state-e-g-liked-reposted-following-consistently-across-the-ui",
+      "title": "Implement social interactions: follow/unfollow users, like/unlike posts, repost/unrepost posts, and reply to posts; reflect counts and user state (e.g., liked/reposted/following) consistently across the UI.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-threads-like-feed-algorithm-baseline-home-feed-for-authenticated-users-prioritizing-followed-accounts-plus-optionally-a-fallback-of-recent-public-posts-and-a-public-explore-feed-showing-recent-posts-support-pagination-infinite-scroll",
+      "title": "Provide a Threads-like feed algorithm baseline: Home feed for authenticated users prioritizing followed accounts (plus optionally a fallback of recent public posts), and a Public/Explore feed showing recent posts; support pagination/infinite scroll.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-user-discovery-via-search-search-users-by-handle-display-name-and-optionally-search-recent-posts-by-keyword",
+      "title": "Add basic user discovery via search: search users by handle/display name and optionally search recent posts by keyword.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-original-visual-theme-not-blue-purple-across-the-app-with-a-distinct-threads-like-minimal-aesthetic-typographic-hierarchy-spacing-post-cards-icons-and-consistent-light-mode-styling",
+      "title": "Apply a cohesive, original visual theme (not blue/purple) across the app with a distinct Threads-like minimal aesthetic: typographic hierarchy, spacing, post cards, icons, and consistent light mode styling.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-seed-demo-experience-ensure-a-newly-deployed-app-is-usable-by-first-users-by-supporting-an-initial-empty-state-ux-and-optional-backend-provided-sample-content-toggle-for-local-demo-environments",
+      "title": "Seed/demo experience: ensure a newly deployed app is usable by first users by supporting an initial empty state UX and optional backend-provided sample content toggle for local/demo environments.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-mobile-style-bottom-navigation-bar-app-like-tab-bar-that-appears-on-small-screens-and-provides-primary-navigation-to-home-explore-compose-authenticated-only-and-profile-authenticated-only-with-clear-active-state-styling",
+      "title": "Add a mobile-style bottom navigation bar (app-like tab bar) that appears on small screens and provides primary navigation to Home, Explore, Compose (authenticated only), and Profile (authenticated only), with clear active-state styling.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-app-layout-so-page-content-is-not-obscured-by-the-fixed-bottom-navigation-bar-on-mobile-e-g-add-safe-area-aware-bottom-padding-margin-to-the-main-content-container",
+      "title": "Update the app layout so page content is not obscured by the fixed bottom navigation bar on mobile (e.g., add safe-area-aware bottom padding/margin to the main content container).",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-user-visible-branding-text-from-threads-to-josh-including-the-top-left-header-brand-text-and-any-other-remaining-threads-references-in-the-ui",
+      "title": "Update all user-visible branding text from “Threads” to “Josh”, including the top-left header brand text and any other remaining “Threads” references in the UI.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-change-the-html-document-title-to-use-josh-instead-of-the-current-threads-based-title-text-so-that-the-browser-tab-title-reflects-the-new-app-name",
+      "title": "Change the HTML document title to use “Josh” instead of the current Threads-based title text so that the browser tab/title reflects the new app name.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-appropriate-josh-logo-and-update-the-app-header-branding-to-use-it-replacing-the-current-generated-app-logo-asset-usage-where-shown-in-the-header",
+      "title": "Add an appropriate “Josh” logo and update the app header branding to use it (replacing the current generated app logo asset usage where shown in the header).",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a Threads-like social media app (microblogging social network).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create core backend data models and APIs for a Threads-like network: user profile (handle, display name, bio, avatar), posts (text, timestamp, author, reply-to), reposts, likes, and follow graph (following/followers).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add a mobile-style bottom navigation bar (app-like tab bar) for primary sections of the app.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Rename/brand the app as \"Josh\" across UI and metadata (e.g., document/page title currently still shows \"Threads\").",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Update deployment subdomain to be only \"josh\" instead of \"josh-ulx\".",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Add an appropriate \"Josh\" logo and use it in the app branding (e.g., header/app icon where applicable).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Update the production deployment configuration so the app subdomain is exactly `josh` (not `josh-ulx`).",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Josh",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

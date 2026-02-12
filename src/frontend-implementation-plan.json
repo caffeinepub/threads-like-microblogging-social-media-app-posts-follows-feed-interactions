@@ -1,0 +1,78 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Rebrand UI to “Josh” (branding text, document title, header logo) and align production subdomain config",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "summary": "Replace all user-visible “Threads” branding text in the UI with “Josh”, including the header brand label.",
+      "acceptanceCriteria": [
+        "Header brand text in the sticky top header shows “Josh” (no longer “Threads”).",
+        "A scan of the frontend UI and templates shows no remaining user-facing “Threads” branding (except where part of a descriptive non-brand sentence is intentionally kept, if any)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Update the top-left header brand text from “Threads” to “Josh”, and scan/replace any remaining user-visible “Threads” branding strings rendered by the layout. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Update the HTML document title to use “Josh” (no “Threads”) so the browser tab reflects the new name.",
+      "acceptanceCriteria": [
+        "`frontend/index.html` `<title>` is updated to include “Josh” and does not include “Threads`.",
+        "After loading the app, the browser tab title shows “Josh”.",
+        "After loading the app, the browser tab title shows “Josh”."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Replace the existing Threads-based <title> text with a Josh-based title that includes “Josh” and does not include “Threads”."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Add a new generated “Josh” logo asset and use it for the header branding, replacing the old logo reference.",
+      "acceptanceCriteria": [
+        "A new generated logo image for Josh exists under `frontend/public/assets/generated/` and is used by the header brand link.",
+        "The header logo has appropriate alt text (e.g., “Josh logo”).",
+        "The previous logo asset is no longer referenced in the header component."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/josh-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated minimalist “Josh” logo (transparent background), named exactly: frontend/public/assets/generated/josh-logo.dim_512x512.png."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Update the header brand link to use the new logo at frontend/public/assets/generated/josh-logo.dim_512x512.png, set alt text to “Josh logo”, and remove the previous header reference to /assets/generated/app-logo.dim_512x512.png. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Align production deployment configuration so the app subdomain is exactly `josh` (not `josh-ulx`).",
+      "acceptanceCriteria": [
+        "The deployed app is reachable via the `josh` subdomain, and `josh-ulx` is no longer the active subdomain for this app."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/.env.production",
+          "operation": "create",
+          "description": "Add/adjust production build-time configuration needed by the deployment pipeline to target the `josh` subdomain (and not `josh-ulx`), using environment variables consumed by the frontend build/deploy tooling."
+        },
+        {
+          "path": "frontend/.env.example",
+          "operation": "modify",
+          "description": "Document the production subdomain-related environment variable(s) needed to deploy with subdomain `josh`, so local/prod configuration stays consistent."
+        }
+      ]
+    }
+  ]
+}
