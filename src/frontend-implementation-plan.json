@@ -1,76 +1,45 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Rebrand UI to “Josh” (branding text, document title, header logo) and align production subdomain config",
+  "title": "Update app canonical subdomain and preserve legacy subdomain via client-side redirect",
   "requirements": [
     {
-      "id": "REQ-12",
-      "summary": "Replace all user-visible “Threads” branding text in the UI with “Josh”, including the header brand label.",
+      "id": "REQ-16",
+      "summary": "Treat josh.caffeine.xyz as the canonical production URL in the frontend and avoid using josh-ulx.caffeine.xyz as the primary URL.",
       "acceptanceCriteria": [
-        "Header brand text in the sticky top header shows “Josh” (no longer “Threads”).",
-        "A scan of the frontend UI and templates shows no remaining user-facing “Threads” branding (except where part of a descriptive non-brand sentence is intentionally kept, if any)."
+        "Visiting https://josh.caffeine.xyz loads the app successfully in production.",
+        "The production deployment no longer uses the `josh-ulx` subdomain as the primary/canonical app URL."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "path": "frontend/src/main.tsx",
           "operation": "modify",
-          "description": "Update the top-left header brand text from “Threads” to “Josh”, and scan/replace any remaining user-visible “Threads” branding strings rendered by the layout. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "summary": "Update the HTML document title to use “Josh” (no “Threads”) so the browser tab reflects the new name.",
-      "acceptanceCriteria": [
-        "`frontend/index.html` `<title>` is updated to include “Josh” and does not include “Threads`.",
-        "After loading the app, the browser tab title shows “Josh”.",
-        "After loading the app, the browser tab title shows “Josh”."
-      ],
-      "file_operations": [
+          "description": "Add an early runtime hostname canonicalization check so the app considers josh.caffeine.xyz the canonical host (e.g., by redirecting away from the legacy host before React/Internet Identity initialization)."
+        },
         {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Replace the existing Threads-based <title> text with a Josh-based title that includes “Josh” and does not include “Threads”."
+          "description": "Update/augment document metadata to reflect the canonical production URL where applicable (e.g., add or update a canonical link element pointing to josh.caffeine.xyz, without changing branding beyond what is required for the subdomain change)."
         }
       ]
     },
     {
-      "id": "REQ-14",
-      "summary": "Add a new generated “Josh” logo asset and use it for the header branding, replacing the old logo reference.",
+      "id": "REQ-17",
+      "summary": "Ensure visits to josh-ulx.caffeine.xyz transparently resolve to josh.caffeine.xyz while preserving full path, query, and hash routing so authentication and app flows keep working.",
       "acceptanceCriteria": [
-        "A new generated logo image for Josh exists under `frontend/public/assets/generated/` and is used by the header brand link.",
-        "The header logo has appropriate alt text (e.g., “Josh logo”).",
-        "The previous logo asset is no longer referenced in the header component."
+        "Requests to https://josh-ulx.caffeine.xyz/* redirect (or otherwise resolve) to https://josh.caffeine.xyz/* while preserving the route (including hash-based routes).",
+        "After redirection, Internet Identity sign-in and authenticated actions (posting/liking/following/replying/reposting) still function as before."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/josh-logo.dim_512x512.png",
-          "operation": "create",
-          "description": "Add the generated minimalist “Josh” logo (transparent background), named exactly: frontend/public/assets/generated/josh-logo.dim_512x512.png."
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Implement a client-side redirect from host josh-ulx.caffeine.xyz to josh.caffeine.xyz that preserves window.location.pathname, window.location.search, and window.location.hash; run this before mounting the app so Internet Identity/login flows occur only on the new host."
         },
         {
-          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "path": "frontend/src/hooks/useInternetIdentity.ts",
           "operation": "modify",
-          "description": "Update the header brand link to use the new logo at frontend/public/assets/generated/josh-logo.dim_512x512.png, set alt text to “Josh logo”, and remove the previous header reference to /assets/generated/app-logo.dim_512x512.png. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-15",
-      "summary": "Align production deployment configuration so the app subdomain is exactly `josh` (not `josh-ulx`).",
-      "acceptanceCriteria": [
-        "The deployed app is reachable via the `josh` subdomain, and `josh-ulx` is no longer the active subdomain for this app."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/.env.production",
-          "operation": "create",
-          "description": "Add/adjust production build-time configuration needed by the deployment pipeline to target the `josh` subdomain (and not `josh-ulx`), using environment variables consumed by the frontend build/deploy tooling."
-        },
-        {
-          "path": "frontend/.env.example",
-          "operation": "modify",
-          "description": "Document the production subdomain-related environment variable(s) needed to deploy with subdomain `josh`, so local/prod configuration stays consistent."
+          "description": "Review and adjust any Internet Identity/AuthClient configuration that is origin-sensitive (e.g., derivation origin / identity provider options) to ensure it behaves correctly after the host redirect and does not retain/assume the legacy host in production."
         }
       ]
     }

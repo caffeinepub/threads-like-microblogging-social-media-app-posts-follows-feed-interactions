@@ -1,13 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
+  "projectStateVersion": 9,
   "summary": "Build a Threads-like social media app.",
   "architectural_notes": [],
   "known_issues": [
     "App/page title is still set to \"Threads\" instead of \"Josh\" in the live deployment."
   ],
-  "isFixRequest": true,
-  "imageRequirements": "## Required Images\n- Minimalist “Josh” logo mark, clean modern style, high contrast, on transparent background (josh-logo.dim_512x512.png)\n\n## Edit Images\n- Replace the existing logo artwork with a Josh-appropriate logo (app-logo.dim_512x512.png > josh-logo.dim_512x512.png)",
+  "isFixRequest": false,
   "existing_features": [
     {
       "id": "feature-implement-internet-identity-sign-in-and-gate-authenticated-actions-creating-posts-following-liking-replying-reposting-behind-authentication-while-allowing-unauthenticated-users-to-browse-a-limited-public-feed",
@@ -112,6 +111,14 @@
         "REQ-14"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-app-s-production-deployment-configuration-so-the-app-is-served-at-subdomain-josh-caffeine-xyz-instead-of-josh-ulx-caffeine-xyz",
+      "title": "Update the app’s production deployment configuration so the app is served at subdomain `josh.caffeine.xyz` instead of `josh-ulx.caffeine.xyz`.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -158,6 +165,14 @@
       "summary": "Update the production deployment configuration so the app subdomain is exactly `josh` (not `josh-ulx`).",
       "reqIds": [
         "REQ-15"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Ensure existing links to `https://josh-ulx.caffeine.xyz` continue to work by configuring a redirect (or equivalent) from `josh-ulx.caffeine.xyz` to `josh.caffeine.xyz`, preserving the full path and query/hash route.",
+      "reqIds": [
+        "REQ-17"
       ],
       "status": "pending"
     }

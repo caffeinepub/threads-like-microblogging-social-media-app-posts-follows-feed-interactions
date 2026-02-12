@@ -23,5 +23,6 @@
   "frontend/src/index.css": "Global styles with OKLCH color system using a warm orange/amber primary palette, supporting both light and dark modes with proper contrast ratios, and safe-area utilities for mobile devices with notches/home indicators.",
   "frontend/tailwind.config.js": "Tailwind configuration extending the theme with custom OKLCH color tokens, Inter font family, custom border radius, safe-area spacing utilities, and animation utilities.",
   "frontend/src/components/layout/BottomTabNav.tsx": "Mobile-only bottom tab navigation component with Home, Explore, Compose, and Profile tabs, featuring active state styling, authentication-gated actions, and touch-friendly design with safe-area support.",
-  "frontend/index.html": "HTML entry point with updated document title \"Josh - Social microblogging platform\" replacing the previous Threads branding."
+  "frontend/index.html": "HTML entry point with canonical link pointing to josh.caffeine.xyz and document title \"Josh - Social microblogging platform\".",
+  "frontend/src/main.tsx": "Application entry point with client-side redirect from legacy josh-ulx.caffeine.xyz subdomain to canonical josh.caffeine.xyz subdomain, preserving full path/query/hash before React initialization."
 }
